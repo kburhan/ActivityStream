@@ -1,4 +1,4 @@
-package com.bitrix24.pages.tests.utilities;
+package com.bitrix24.utilities;
 
 import java.io.FileInputStream;
 import java.util.Properties;
