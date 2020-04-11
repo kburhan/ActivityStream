@@ -11,7 +11,7 @@ public class CreateLinkPage extends AbstractBasePage{
     @FindBy(xpath = "//span[text()='Event']")
     private WebElement eventClick;
 
-    @FindBy(className = "bxhtmled-top-bar-btn bxhtmled-button-link bxhtmled-top-bar-btn-active")
+    @FindBy(xpath = "(//span[@id='bx-b-link-blogPostForm_calendar'])//span")
     private WebElement linkClick;
 
     @FindBy(xpath = "//input[@placeholder='Link URL']")
@@ -19,6 +19,9 @@ public class CreateLinkPage extends AbstractBasePage{
 
     @FindBy(className = "adm-btn-save")
     private WebElement saveButton;
+
+    @FindBy(xpath = "(//style[@type='text/css'])[2]//following::body")
+    private WebElement linkText;
 
 
 
@@ -41,11 +44,11 @@ public class CreateLinkPage extends AbstractBasePage{
         wait.until(ExpectedConditions.elementToBeClickable(saveButton)).click();
     }
 
-    public String getCreateLinkText(String link){
+    public String getCreateLinkText(){
 
         BrowserUtilities.waitForPageToLoad(20);
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.linkText(link)));
-      return  driver.findElement(By.linkText(link)).getText();
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath ("//div[@id='bx-html-editor-iframe-cnt-oCalEditorcal_3Jcl']//iframe")));
+        return linkText.getText();
 
 
 
