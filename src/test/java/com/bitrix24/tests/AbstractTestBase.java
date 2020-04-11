@@ -3,6 +3,7 @@ package com.bitrix24.tests;
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
+import com.bitrix24.utilities.BrowserUtilities;
 import com.bitrix24.utilities.ConfigurationReader;
 import com.bitrix24.utilities.Driver;
 import org.openqa.selenium.interactions.Actions;
@@ -12,7 +13,7 @@ import org.testng.annotations.*;
 
 import java.io.IOException;
 
-public class AbstractTestBase {
+public abstract class AbstractTestBase {
 
     protected WebDriverWait wait;
     protected Actions actions;
