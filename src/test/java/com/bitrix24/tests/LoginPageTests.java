@@ -17,7 +17,6 @@ public class LoginPageTests extends AbstractTestBase {
         //take a screenshot
         BrowserUtilities.getScreenshot("warning_message");
 
-
         test.pass("Warning message is displayed");
 
     }
