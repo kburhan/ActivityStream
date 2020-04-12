@@ -1,6 +1,5 @@
 package com.bitrix24.pages;
 
-
 import com.bitrix24.utilities.BrowserUtilities;
 import com.bitrix24.utilities.Driver;
 import org.openqa.selenium.By;
