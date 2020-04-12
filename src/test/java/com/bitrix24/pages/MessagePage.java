@@ -54,7 +54,6 @@ public class MessagePage extends AbstractBasePage {
         BrowserUtilities.wait(5);
 
         WebElement image = driver.findElement(By.id("disk-attach-image-193"));
-
         return image.isDisplayed();
 
     }
