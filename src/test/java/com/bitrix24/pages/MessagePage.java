@@ -41,28 +41,40 @@ public class MessagePage extends AbstractBasePage {
 
     }
 
-    public boolean clickOnImageAndSelectIcon(){
+    public void clickOnImageIcon(){
         BrowserUtilities.waitForPageToLoad(10);
         wait.until(ExpectedConditions.elementToBeClickable(imageIcon)).click();
+    }
+
+    public void setSelectDocAndSelectImage(){
+        BrowserUtilities.waitForPageToLoad(10);
         wait.until(ExpectedConditions.elementToBeClickable(selectDoc)).click();
         wait.until(ExpectedConditions.elementToBeClickable(logo)).click();
         BrowserUtilities.wait(3);
-        //when you click on logo the DOM changes and you have to find elements again.. stale elemen..how to resolve? find element again
-        //wait.until(ExpectedConditions.presenceOfElementLocated(By.className("popup-window-button popup-window-button-accept"))).click();
         wait.until(ExpectedConditions.elementToBeClickable(selectDocumentButton)).click();
-        wait.until(ExpectedConditions.elementToBeClickable(sendButton)).click();
-        BrowserUtilities.wait(5);
+    }
 
+    public void setSendButton(){
+        BrowserUtilities.waitForPageToLoad(10);
+        wait.until(ExpectedConditions.elementToBeClickable(sendButton)).click();
+    }
+
+    //you can add parameter maybe for code below :
+    public boolean checkIfPictureIsDisplayed(){
+
+        BrowserUtilities.waitForPageToLoad(10);
         WebElement image = driver.findElement(By.id("disk-attach-image-193"));
         return image.isDisplayed();
-
     }
 
 
     public void enterMessageInFrame (String description) {
         //wait until frame is available and switch to it
+        BrowserUtilities.waitForPageToLoad(10);
         wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(messageFrame));
-        //send keys ??
+        WebElement message = messageFrame;
+        //message.sendKeys(description); does not work just yet
+
         driver.switchTo().defaultContent();//exit from the frame
     }
 }

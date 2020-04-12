@@ -22,7 +22,7 @@ public class UserStory1 extends AbstractTestBase {
      * 9. User should be able to click on "Record Video" tab to record a video and attach it with the message.
      */
     @Test (description = "Verify that user is able to Select document from Bitrix24")
-    public void verifyUserISAbleToSelectImage() {
+    public void verifyUserIsAbleToSelectImage() {
         test = report.createTest("Verify that user is able to select logo from Bitrix24 library");
 
         LoginPage loginPage = new LoginPage();
@@ -30,12 +30,18 @@ public class UserStory1 extends AbstractTestBase {
 
         loginPage.login("marketing41@cybertekschool.com", "UserUser");
         messagePage.clickToMessageTab();
+        messagePage.clickOnImageIcon();
+        messagePage.setSelectDocAndSelectImage();
+        messagePage.setSendButton();
 
-        Assert.assertTrue(messagePage.clickOnImageAndSelectIcon());
+
+        Assert.assertTrue(messagePage.checkIfPictureIsDisplayed());
 
         test.pass("Logo uploaded successfully");
 
 
     }
+
+
 
 }
