@@ -1,5 +1,4 @@
 package com.bitrix24.utilities;
-
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.OutputType;
