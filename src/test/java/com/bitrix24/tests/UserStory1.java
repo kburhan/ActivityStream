@@ -30,7 +30,8 @@ public class UserStory1 extends AbstractTestBase {
 
         loginPage.login("marketing41@cybertekschool.com", "UserUser");
         messagePage.clickToMessageTab();
-        messagePage.clickOnImageAndSelectIcon();
+
+        Assert.assertTrue(messagePage.clickOnImageAndSelectIcon());
 
         test.pass("Logo uploaded successfully");
 

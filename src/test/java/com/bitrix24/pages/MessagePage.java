@@ -22,7 +22,7 @@ public class MessagePage extends AbstractBasePage {
     @FindBy (xpath = "(//*[contains(text(),'Select document from Bitrix24')])[1]")
     private WebElement selectDoc;
 
-    @FindBy (css = "[class^='bx-file-dialog-content-link']")
+    @FindBy (xpath = "//a[text()='Logo.gif']")
     private WebElement logo;
 
     //@FindBy ( className = "popup-window-button popup-window-button-accept")
@@ -32,13 +32,16 @@ public class MessagePage extends AbstractBasePage {
     @FindBy (id = "blog-submit-button-save")
     private WebElement sendButton;
 
+    @FindBy (id = "disk-attach-image-193")
+    private WebElement imageOfLogo;
+
     public void clickToMessageTab(){
         BrowserUtilities.waitForPageToLoad(10);
         wait.until(ExpectedConditions.elementToBeClickable(messageTab)).click();
 
     }
 
-    public void clickOnImageAndSelectIcon(){
+    public boolean clickOnImageAndSelectIcon(){
         BrowserUtilities.waitForPageToLoad(10);
         wait.until(ExpectedConditions.elementToBeClickable(imageIcon)).click();
         wait.until(ExpectedConditions.elementToBeClickable(selectDoc)).click();
@@ -48,6 +51,11 @@ public class MessagePage extends AbstractBasePage {
         //wait.until(ExpectedConditions.presenceOfElementLocated(By.className("popup-window-button popup-window-button-accept"))).click();
         wait.until(ExpectedConditions.elementToBeClickable(selectDocumentButton)).click();
         wait.until(ExpectedConditions.elementToBeClickable(sendButton)).click();
+        BrowserUtilities.wait(5);
+
+        WebElement image = driver.findElement(By.id("disk-attach-image-193"));
+
+        return image.isDisplayed();
 
     }
 
