@@ -2,11 +2,12 @@ package com.bitrix24.pages;
 
 import com.bitrix24.utilities.BrowserUtilities;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
-public class CreateLinkPage extends AbstractBasePage{
+public class CreateLinkPage extends AbstractBasePage {
 
     @FindBy(xpath = "//span[text()='Event']")
     private WebElement eventClick;
@@ -20,9 +21,8 @@ public class CreateLinkPage extends AbstractBasePage{
     @FindBy(className = "adm-btn-save")
     private WebElement saveButton;
 
-    @FindBy(xpath = "(//style[@type='text/css'])[2]//following::body")
+    @FindBy(xpath = "//div[@id='bx-html-editor-iframe-cnt-oCalEditorcal_3Jcl']//iframe")
     private WebElement linkText;
-
 
 
     public void setEventClick() {
@@ -34,26 +34,31 @@ public class CreateLinkPage extends AbstractBasePage{
         BrowserUtilities.waitForPageToLoad(20);
         wait.until(ExpectedConditions.elementToBeClickable(linkClick)).click();
     }
+
     public void setLinkInput(String link) {
         BrowserUtilities.waitForPageToLoad(20);
         wait.until(ExpectedConditions.elementToBeClickable(linkInput));
         linkInput.sendKeys(link);
     }
-    public void setSaveButton(){
+
+    public void setSaveButton() {
         BrowserUtilities.waitForPageToLoad(20);
         wait.until(ExpectedConditions.elementToBeClickable(saveButton)).click();
     }
 
-    public String getCreateLinkText(){
+    public String getCreateLinkText() {
 
         BrowserUtilities.waitForPageToLoad(20);
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath ("//div[@id='bx-html-editor-iframe-cnt-oCalEditorcal_3Jcl']//iframe")));
-        return linkText.getText();
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@id='bx-html-editor-iframe-cnt-oCalEditorcal_3Jcl']//iframe")));
 
+        BrowserUtilities.wait(2);
 
+        WebElement  frame =driver.findElement(By.xpath("(//iframe[@class='bx-editor-iframe'])[2]"));
+        WebElement body=driver.switchTo().frame(frame).findElement(By.xpath("//body[@contenteditable='true']"));
+        System.out.println(body.getText());
 
-      ////a[@data-bx-clean-attribute='title']
+        return body.getText();
+
     }
-
 
 }

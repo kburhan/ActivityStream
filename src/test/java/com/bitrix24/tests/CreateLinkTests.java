@@ -25,11 +25,12 @@ public class CreateLinkTests extends AbstractTestBase {
         createLinkPage.setLinkInput(link);
         createLinkPage.setSaveButton();
 
-        test.pass("Event's link was created succesfully");
+        test.pass("Event's link was created successfully");
+        String expected=createLinkPage.getCreateLinkText();
 
-        Assert.assertEquals(link,createLinkPage.getCreateLinkText());
-
+        Assert.assertEquals(link,expected);
     }
+
     @DataProvider
     public Object[][] smokeTestData() {
         return new Object[][]{
