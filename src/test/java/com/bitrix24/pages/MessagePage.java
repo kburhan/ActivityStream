@@ -13,8 +13,11 @@ public class MessagePage extends AbstractBasePage {
     @FindBy (id = "feed-add-post-form-tab-message")
     private WebElement messageTab;
 
-    @FindBy (xpath = "(//iframe[@class='bx-editor-iframe'])[1]")
+    @FindBy (xpath = "//iframe[@class='bx-editor-iframe']")
     private WebElement messageFrame;
+
+    @FindBy(xpath = "//body[@contenteditable='true']")
+    private WebElement messageBodyTextArea;
 
     @FindBy (id = "bx-b-uploadfile-blogPostForm")
     private WebElement imageIcon;
@@ -34,6 +37,18 @@ public class MessagePage extends AbstractBasePage {
 
     @FindBy (id = "disk-attach-image-193")
     private WebElement imageOfLogo;
+
+    @FindBy (xpath = "//span[@title='Quote text']")
+    private WebElement quoteIcon;
+
+    @FindBy (tagName = "blockquote")
+    private WebElement quoteInputArea;
+
+
+    public void clickOnQuoteIcon(){
+        BrowserUtilities.waitForPageToLoad(10);
+        wait.until(ExpectedConditions.elementToBeClickable(quoteIcon)).click();
+    }
 
     public void clickToMessageTab(){
         BrowserUtilities.waitForPageToLoad(10);
@@ -63,18 +78,29 @@ public class MessagePage extends AbstractBasePage {
     public boolean checkIfPictureIsDisplayed(){
 
         BrowserUtilities.waitForPageToLoad(10);
-        WebElement image = driver.findElement(By.id("disk-attach-image-193"));
+        WebElement image = driver.findElement(By.cssSelector("[id^='disk-attach-image']"));
         return image.isDisplayed();
     }
 
+    public String checkIfQuoteIsMatching(){
+        BrowserUtilities.waitForPageToLoad(10);
+        WebElement quote = driver.findElement(By.xpath("//table[@class='blogquote']/tbody/tr/td"));
+        return quote.getText();
+    }
+
+    public void enterQuote (String quote){
+        BrowserUtilities.waitForPageToLoad(10);
+        wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(messageFrame));
+        wait.until(ExpectedConditions.visibilityOf(quoteInputArea)).sendKeys(quote);
+        driver.switchTo().defaultContent();//exit from the frame
+
+    }
 
     public void enterMessageInFrame (String description) {
         //wait until frame is available and switch to it
         BrowserUtilities.waitForPageToLoad(10);
         wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(messageFrame));
-        WebElement message = messageFrame;
-        //message.sendKeys(description); does not work just yet
-
+        wait.until(ExpectedConditions.elementToBeClickable(messageBodyTextArea)).sendKeys(description);
         driver.switchTo().defaultContent();//exit from the frame
     }
 }

@@ -34,7 +34,6 @@ public class SendingMessagesTests extends AbstractTestBase {
         messagePage.setSelectDocAndSelectImage();
         messagePage.setSendButton();
 
-
         Assert.assertTrue(messagePage.checkIfPictureIsDisplayed());
 
         test.pass("Logo uploaded successfully");
@@ -42,6 +41,25 @@ public class SendingMessagesTests extends AbstractTestBase {
 
     }
 
+    @Test (description = "Verify that user is able to create a quote by clicking on the Comma icon")
+    public void verifyThatQuoteIsCreated(){
+        test = report.createTest("Verify that user is able to create a quote (Hello, World) by clicking on the Comma icon");
 
+        LoginPage loginPage = new LoginPage();
+        MessagePage messagePage = new MessagePage();
+        loginPage.login();
+        messagePage.clickToMessageTab();
+        messagePage.clickOnQuoteIcon();
+
+        messagePage.enterQuote("Hello, World");
+        messagePage.setSendButton();
+
+        String actual = messagePage.checkIfQuoteIsMatching();
+        String expected = "Hello, World";
+
+        Assert.assertEquals(actual,expected);
+        test.pass("Quote is created successfully");
+
+    }
 
 }
