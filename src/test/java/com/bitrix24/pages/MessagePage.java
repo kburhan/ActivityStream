@@ -13,7 +13,7 @@ public class MessagePage extends AbstractBasePage {
     @FindBy (id = "feed-add-post-form-tab-message")
     private WebElement messageTab;
 
-    @FindBy (xpath = "(//iframe[@class='bx-editor-iframe'])[1]")
+    @FindBy (xpath = "//iframe[@class='bx-editor-iframe']")
     private WebElement messageFrame;
 
     @FindBy (id = "bx-b-uploadfile-blogPostForm")
@@ -34,6 +34,40 @@ public class MessagePage extends AbstractBasePage {
 
     @FindBy (id = "disk-attach-image-193")
     private WebElement imageOfLogo;
+
+    @FindBy(id = "bx-b-mention-blogPostForm")
+    private WebElement addMentionIcon;
+
+    @FindBy(css = "[id^='destDepartmentTab_mention']")
+    private WebElement contactsLink;
+
+    @FindBy(xpath = "//div[text()='helpdesk31@cybertekschool.com']")
+    private WebElement contactEmail;
+
+    @FindBy(xpath = "//body[@contenteditable='true']")
+    private WebElement messageBodyTextArea;
+
+    public void addMention(){
+        BrowserUtilities.waitForPageToLoad(10);
+        wait.until(ExpectedConditions.elementToBeClickable(addMentionIcon)).click();
+    }
+
+    public void clickOnContactsLink(){
+        BrowserUtilities.waitForPageToLoad(10);
+        wait.until(ExpectedConditions.elementToBeClickable(contactsLink)).click();
+    }
+    public void selectContactEmail(){
+        BrowserUtilities.waitForPageToLoad(10);
+        wait.until(ExpectedConditions.elementToBeClickable(contactEmail)).click();
+    }
+    public String getMessageBodyText(){
+        BrowserUtilities.waitForPageToLoad(10);
+        wait.until(ExpectedConditions.visibilityOf(messageBodyTextArea));
+        return messageBodyTextArea.getText();
+    }
+
+
+
 
     public void clickToMessageTab(){
         BrowserUtilities.waitForPageToLoad(10);
