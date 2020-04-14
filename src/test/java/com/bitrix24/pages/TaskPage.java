@@ -24,10 +24,10 @@ public class TaskPage extends AbstractBasePage {
     @FindBy(xpath = "//label[.='High Priority']")
     private WebElement highPriorityLabel;
 
-    @FindBy(xpath = "//span[@id='lhe_button_editor_task-form-lifefeed_task_form']")
+    @FindBy(xpath = "//*[@id='lhe_button_editor_task-form-lifefeed_task_form']")
     private WebElement visualEditor;
 
-    @FindBy(xpath = "//*[@id='bx-html-editor-tlbr-bitrix_tasks_task_1']/span[2]")
+    @FindBy(xpath = "//*[@id='bx-html-editor-tlbr-lifefeed_task_form']")
     private WebElement visualEditorBar;
 
     @FindBy(xpath = "//span[@id='bx-b-uploadfile-task-form-lifefeed_task_form']")
@@ -42,12 +42,11 @@ public class TaskPage extends AbstractBasePage {
         wait.until(ExpectedConditions.elementToBeClickable(taskTab)).click();
         BrowserUtilities.wait(2);
         taskBox.sendKeys(text);
-//        highPriorityTab.click();
         return taskTab.getText();
     }
 
     public String highPriorityCheckBox(){
-        BrowserUtilities.waitForPageToLoad(15);
+        BrowserUtilities.wait(15);
         wait.until(ExpectedConditions.elementToBeClickable(taskBox));
         BrowserUtilities.wait(2);
         highPriorityTab.click();
@@ -57,10 +56,26 @@ public class TaskPage extends AbstractBasePage {
 
 
     public String highPriorityLabel(){
-        BrowserUtilities.wait(2);
+        BrowserUtilities.wait(15);
         return highPriorityLabel.getText();
     }
 
 
+    public void visualEditor(){
+        BrowserUtilities.wait(15);
+        wait.until(ExpectedConditions.elementToBeClickable(visualEditor)).click();
 
-}
+
+    }
+    public boolean visualEditorBarIsDisplayed(){
+        BrowserUtilities.wait(5);
+        wait.until(ExpectedConditions.visibilityOf(visualEditorBar));
+
+        return visualEditorBar.isDisplayed();
+    }
+
+    }
+
+
+
+
