@@ -16,28 +16,37 @@ public class TaskTabTests extends AbstractTestBase {
        5. User should be able to add mention by clicking on the Add mention icon and select contacts from the lists provided in dropdown.
 
      */
-    @Test(description = "Verify that task is created")
-    public void verifyIfHighPriority(){
+    @Test(description = "Verify that task is created and visual editor is visible")
+    public void verifyIfHighPriority() {
 
         LoginPage loginPage = new LoginPage();
         TaskPage taskPage = new TaskPage();
         loginPage.login("hr41@cybertekschool.com", "UserUser");
 
         test = report.createTest("Task tab is visible!");
-        Assert.assertEquals(taskPage.taskTab("Demo Meeting!"),"TASK");
+        Assert.assertEquals(taskPage.taskTab("Demo Meeting!"), "TASK");
         test.pass("Task tab is visible");
 
 
-       test = report.createTest("High Priority checkbox is clicked");
-       Assert.assertEquals(taskPage.highPriorityLabel(), "High Priority");
-       taskPage.highPriorityCheckBox();
-       test.pass("High Priority checkbox visible and clickable");
+        test = report.createTest("High Priority checkbox is clicked");
+        Assert.assertEquals(taskPage.highPriorityLabel(), "High Priority");
+        taskPage.highPriorityCheckBox();
+        test.pass("High Priority checkbox visible and clickable");
 
 
-
-
-
-
+        test = report.createTest("Visual editor is visible and the bar is displayed");
+        taskPage.visualEditor();
+        taskPage.visualEditorBarIsDisplayed();
+        Assert.assertTrue(taskPage.visualEditorBarIsDisplayed());
+        test.pass("Visual editor is clicked and the bar is displayed");
 
     }
+
+
+
+
+
+
+
+
 }
