@@ -17,7 +17,6 @@ public abstract class AbstractBasePage {
         PageFactory.initElements(driver, this);
     }
 
-
     public void navigateTo(String tabName) {
 
         String tabNameXpath = "//span[text()='"+ tabName + "']";
