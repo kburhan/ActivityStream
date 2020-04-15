@@ -2,7 +2,7 @@
 <suite name="Smoke">
     <test name="Smoke test">
         <classes>
-            <class name="com.bitrix24.tests.CreateLinkTests"/>
+            <class name="com.bitrix24.tests.EventTabTests"/>
         </classes>
     </test>
 </suite>
