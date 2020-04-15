@@ -1,12 +1,12 @@
 package com.bitrix24.tests;
 
-import com.bitrix24.pages.CreateLinkPage;
+import com.bitrix24.pages.EventTabPage;
 import com.bitrix24.pages.LoginPage;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-public class CreateLinkTests extends AbstractTestBase {
+public class EventTabTests extends AbstractTestBase {
 
 
     @Test(dataProvider = "smokeTestData")
@@ -18,15 +18,15 @@ public class CreateLinkTests extends AbstractTestBase {
         loginPage.login();
         loginPage.navigateTo(name);
 
-        CreateLinkPage createLinkPage=new CreateLinkPage();
+        EventTabPage eventTabPage =new EventTabPage();
 
-        createLinkPage.setEventClick();
-        createLinkPage.setLinkClick();
-        createLinkPage.setLinkInput(link);
-        createLinkPage.setSaveButton();
+        eventTabPage.setEventClick();
+        eventTabPage.setLinkClick();
+        eventTabPage.setLinkInput(link);
+        eventTabPage.setSaveButton();
 
         test.pass("Event's link was created successfully");
-        String expected=createLinkPage.getCreateLinkText();
+        String expected= eventTabPage.getCreateLinkText();
 
         Assert.assertEquals(link,expected);
     }

@@ -24,7 +24,10 @@ public abstract class AbstractTestBase {
     @BeforeTest
     @Parameters("reportName")
     public void setupTest(@Optional String reportName){
+user_story_3.2
 
+
+ master
         report = new ExtentReports();
         reportName= reportName==null ? "report.html" : reportName+".html";
         String reportPath = "";
@@ -40,6 +43,8 @@ public abstract class AbstractTestBase {
         //is a HTML report itself
         htmlReporter = new ExtentHtmlReporter(reportPath);
         //add it to the reporter
+        System.out.println("Report: "+reportName);
+
         report.attachReporter(htmlReporter);
         htmlReporter.config().setReportName("Bitrix24 Test Automation Results");
 
