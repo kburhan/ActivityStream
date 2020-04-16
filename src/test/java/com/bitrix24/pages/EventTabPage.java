@@ -4,10 +4,11 @@ import com.bitrix24.utilities.BrowserUtilities;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
-public class CreateLinkPage extends AbstractBasePage {
+public class EventTabPage extends AbstractBasePage {
 
     @FindBy(xpath = "//span[text()='Event']")
     private WebElement eventClick;
@@ -23,7 +24,6 @@ public class CreateLinkPage extends AbstractBasePage {
 
     @FindBy(xpath = "//div[@id='bx-html-editor-iframe-cnt-oCalEditorcal_3Jcl']//iframe")
     private WebElement linkText;
-
 
     public void setEventClick() {
         BrowserUtilities.waitForPageToLoad(20);
