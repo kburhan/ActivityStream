@@ -8,32 +8,32 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class MessagePage extends AbstractBasePage {
 
-    @FindBy (id = "feed-add-post-form-tab-message")
+    @FindBy(id = "feed-add-post-form-tab-message")
     private WebElement messageTab;
 
-    @FindBy (xpath = "//iframe[@class='bx-editor-iframe']")
+    @FindBy(xpath = "//iframe[@class='bx-editor-iframe']")
     private WebElement messageFrame;
 
     @FindBy(xpath = "//body[@contenteditable='true']")
     private WebElement messageBodyTextArea;
 
-    @FindBy (id = "bx-b-uploadfile-blogPostForm")
+    @FindBy(id = "bx-b-uploadfile-blogPostForm")
     private WebElement imageIcon;
 
-    @FindBy (xpath = "(//*[contains(text(),'Select document from Bitrix24')])[1]")
+    @FindBy(xpath = "(//*[contains(text(),'Select document from Bitrix24')])[1]")
     private WebElement selectDoc;
 
-    @FindBy (xpath = "//a[text()='Logo.gif']")
+    @FindBy(xpath = "//a[text()='Logo.gif']")
     private WebElement logo;
 
     //@FindBy ( className = "popup-window-button popup-window-button-accept")
-    @FindBy (xpath = "//div[@class='popup-window-buttons']//span[1]")
-    private WebElement selectDocumentButton ;
+    @FindBy(xpath = "//div[@class='popup-window-buttons']//span[1]")
+    private WebElement selectDocumentButton;
 
-    @FindBy (id = "blog-submit-button-save")
+    @FindBy(id = "blog-submit-button-save")
     private WebElement sendButton;
 
-    @FindBy (id = "disk-attach-image-193")
+    @FindBy(id = "disk-attach-image-193")
     private WebElement imageOfLogo;
 
     @FindBy(id = "bx-b-mention-blogPostForm")
@@ -48,9 +48,6 @@ public class MessagePage extends AbstractBasePage {
     @FindBy(linkText = "helpdesk31@cybertekschool.com")
     private WebElement addedContactEmailLink;
 
-    @FindBy(xpath = "//body[@contenteditable='true']")
-    private WebElement messageBodyTextArea;
-
     @FindBy(xpath = "//*[@id='lhe_button_editor_blogPostForm']")
     //@FindBy(css = "#lhe_button_editor_blogPostForm")
     private WebElement visualEditorButton;
@@ -61,94 +58,99 @@ public class MessagePage extends AbstractBasePage {
     @FindBy(xpath = "//span[@title='Topic']")
     private WebElement topicIcon;
 
-    @FindBy(id = "blog-title" )
-    private  WebElement messageTopicTextBox;
+    @FindBy(id = "blog-title")
+    private WebElement messageTopicTextBox;
 
 
     @FindBy(xpath = "//*[text()='Windows']")
     private WebElement windowsLink;
 
-    public void clickOnWindowsDesktopIcon(){
+    public void clickOnWindowsDesktopIcon() {
         BrowserUtilities.waitForPageToLoad(10);
         wait.until(ExpectedConditions.visibilityOf(windowsLink));
         BrowserUtilities.scrollTo(windowsLink);
         windowsLink.click();
     }
 
-    public void clickTopicIcon(){
+    public void clickTopicIcon() {
         BrowserUtilities.waitForPageToLoad(10);
         wait.until(ExpectedConditions.elementToBeClickable(topicIcon)).click();
     }
-    public WebElement isTopicTextBoxVisible(){
+
+    public WebElement isTopicTextBoxVisible() {
         BrowserUtilities.waitForPageToLoad(10);
         wait.until(ExpectedConditions.visibilityOf(messageTopicTextBox));
         return messageTopicTextBox;
     }
 
 
-    public void clickOnVisualEditor(){
+    public void clickOnVisualEditor() {
         BrowserUtilities.waitForPageToLoad(10);
         wait.until(ExpectedConditions.elementToBeClickable(visualEditorButton)).click();
 
     }
-    public WebElement editorTextBarVisible(){
+
+    public WebElement editorTextBarVisible() {
         BrowserUtilities.waitForPageToLoad(10);
         wait.until(ExpectedConditions.visibilityOf(editorTextBar));
         WebElement editorTextBar = driver.findElement(By.xpath("(//div[@class='bxhtmled-toolbar'])[1]"));
-        return  editorTextBar;
+        return editorTextBar;
     }
 
-    public void addMention(){
+    public void addMention() {
         BrowserUtilities.waitForPageToLoad(10);
         wait.until(ExpectedConditions.elementToBeClickable(addMentionIcon)).click();
     }
 
-    public void clickOnContactsLink(){
+    public void clickOnContactsLink() {
         BrowserUtilities.waitForPageToLoad(10);
         wait.until(ExpectedConditions.elementToBeClickable(contactsLink)).click();
     }
-    public void selectContactEmail(){
+
+    public void selectContactEmail() {
         BrowserUtilities.waitForPageToLoad(10);
         wait.until(ExpectedConditions.elementToBeClickable(contactEmail)).click();
     }
-    public String getMessageBodyText(){
+
+    public String getMessageBodyText() {
         BrowserUtilities.waitForPageToLoad(10);
         wait.until(ExpectedConditions.visibilityOf(messageBodyTextArea));
         return messageBodyTextArea.getText();
     }
 
-    public WebElement getAddedContactEmailLink(){
+    public WebElement getAddedContactEmailLink() {
         BrowserUtilities.waitForPageToLoad(10);
         wait.until(ExpectedConditions.visibilityOf(addedContactEmailLink));
         WebElement addedContactEmail = driver.findElement(By.linkText("helpdesk31@cybertekschool.com"));
 
         return addedContactEmail;
-      
-    @FindBy (xpath = "//span[@title='Quote text']")
+    }
+
+    @FindBy(xpath = "//span[@title='Quote text']")
     private WebElement quoteIcon;
 
-    @FindBy (tagName = "blockquote")
+    @FindBy(tagName = "blockquote")
     private WebElement quoteInputArea;
 
 
-    public void clickOnQuoteIcon(){
+    public void clickOnQuoteIcon() {
         BrowserUtilities.waitForPageToLoad(10);
         wait.until(ExpectedConditions.elementToBeClickable(quoteIcon)).click();
 
     }
 
-    public void clickToMessageTab(){
+    public void clickToMessageTab() {
         BrowserUtilities.waitForPageToLoad(10);
         wait.until(ExpectedConditions.elementToBeClickable(messageTab)).click();
 
     }
 
-    public void clickOnImageIcon(){
+    public void clickOnImageIcon() {
         BrowserUtilities.waitForPageToLoad(10);
         wait.until(ExpectedConditions.elementToBeClickable(imageIcon)).click();
     }
 
-    public void setSelectDocAndSelectImage(){
+    public void setSelectDocAndSelectImage() {
         BrowserUtilities.waitForPageToLoad(10);
         wait.until(ExpectedConditions.elementToBeClickable(selectDoc)).click();
         wait.until(ExpectedConditions.elementToBeClickable(logo)).click();
@@ -156,26 +158,26 @@ public class MessagePage extends AbstractBasePage {
         wait.until(ExpectedConditions.elementToBeClickable(selectDocumentButton)).click();
     }
 
-    public void setSendButton(){
+    public void setSendButton() {
         BrowserUtilities.waitForPageToLoad(10);
         wait.until(ExpectedConditions.elementToBeClickable(sendButton)).click();
     }
 
     //you can add parameter maybe for code below :
-    public boolean checkIfPictureIsDisplayed(){
+    public boolean checkIfPictureIsDisplayed() {
 
         BrowserUtilities.waitForPageToLoad(10);
         WebElement image = driver.findElement(By.cssSelector("[id^='disk-attach-image']"));
         return image.isDisplayed();
     }
 
-    public String checkIfQuoteIsMatching(){
+    public String checkIfQuoteIsMatching() {
         BrowserUtilities.waitForPageToLoad(10);
         WebElement quote = driver.findElement(By.xpath("//table[@class='blogquote']/tbody/tr/td"));
         return quote.getText();
     }
 
-    public void enterQuote (String quote){
+    public void enterQuote(String quote) {
         BrowserUtilities.waitForPageToLoad(10);
         wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(messageFrame));
         wait.until(ExpectedConditions.visibilityOf(quoteInputArea)).sendKeys(quote);
@@ -183,7 +185,7 @@ public class MessagePage extends AbstractBasePage {
 
     }
 
-    public void enterMessageInFrame (String description) {
+    public void enterMessageInFrame(String description) {
         //wait until frame is available and switch to it
         BrowserUtilities.waitForPageToLoad(10);
         wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(messageFrame));
