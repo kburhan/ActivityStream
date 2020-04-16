@@ -24,19 +24,24 @@ public abstract class AbstractTestBase {
     @BeforeTest
     @Parameters("reportName")
     public void setupTest(@Optional String reportName){
-        System.out.println("Report: "+reportName);
+
         report = new ExtentReports();
         reportName= reportName==null ? "report.html" : reportName+".html";
         String reportPath = "";
         //location of report file
         if (System.getProperty("os.name").toLowerCase().contains("win")) {
-            reportPath = System.getProperty("user.dir") + "\\test-output\\"+reportName;
+            reportPath = System.getProperty("user.dir") + "\\test-output\\"+reportName ;
         } else {
-            reportPath = System.getProperty("user.dir") + "/test-output/"+reportName;
+            reportPath = System.getProperty("user.dir") + "/test-output/"+reportName ;
         }
+
+        System.out.println("Report: "+reportName);
+
         //is a HTML report itself
         htmlReporter = new ExtentHtmlReporter(reportPath);
         //add it to the reporter
+        System.out.println("Report: "+reportName);
+
         report.attachReporter(htmlReporter);
         htmlReporter.config().setReportName("Bitrix24 Test Automation Results");
 
