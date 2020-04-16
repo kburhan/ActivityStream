@@ -1,9 +1,7 @@
 package com.bitrix24.pages;
 
-import com.bitrix24.tests.AbstractTestBase;
 import com.bitrix24.utilities.BrowserUtilities;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -44,8 +42,58 @@ public class MessagePage extends AbstractBasePage {
     @FindBy(xpath = "//div[text()='helpdesk31@cybertekschool.com']")
     private WebElement contactEmail;
 
+    @FindBy(linkText = "helpdesk31@cybertekschool.com")
+    private WebElement addedContactEmailLink;
+
     @FindBy(xpath = "//body[@contenteditable='true']")
     private WebElement messageBodyTextArea;
+
+    @FindBy(xpath = "//*[@id='lhe_button_editor_blogPostForm']")
+    //@FindBy(css = "#lhe_button_editor_blogPostForm")
+    private WebElement visualEditorButton;
+
+    @FindBy(xpath = "(//div[@class='bxhtmled-toolbar'])[1]")
+    private WebElement editorTextBar;
+
+    @FindBy(xpath = "//span[@title='Topic']")
+    private WebElement topicIcon;
+
+    @FindBy(id = "blog-title" )
+    private  WebElement messageTopicTextBox;
+
+
+    @FindBy(xpath = "//*[text()='Windows']")
+    private WebElement windowsLink;
+
+    public void clickOnWindowsDesktopIcon(){
+        BrowserUtilities.waitForPageToLoad(10);
+        wait.until(ExpectedConditions.visibilityOf(windowsLink));
+        BrowserUtilities.scrollTo(windowsLink);
+        windowsLink.click();
+    }
+
+    public void clickTopicIcon(){
+        BrowserUtilities.waitForPageToLoad(10);
+        wait.until(ExpectedConditions.elementToBeClickable(topicIcon)).click();
+    }
+    public WebElement isTopicTextBoxVisible(){
+        BrowserUtilities.waitForPageToLoad(10);
+        wait.until(ExpectedConditions.visibilityOf(messageTopicTextBox));
+        return messageTopicTextBox;
+    }
+
+
+    public void clickOnVisualEditor(){
+        BrowserUtilities.waitForPageToLoad(10);
+        wait.until(ExpectedConditions.elementToBeClickable(visualEditorButton)).click();
+
+    }
+    public WebElement editorTextBarVisible(){
+        BrowserUtilities.waitForPageToLoad(10);
+        wait.until(ExpectedConditions.visibilityOf(editorTextBar));
+        WebElement editorTextBar = driver.findElement(By.xpath("(//div[@class='bxhtmled-toolbar'])[1]"));
+        return  editorTextBar;
+    }
 
     public void addMention(){
         BrowserUtilities.waitForPageToLoad(10);
@@ -66,8 +114,13 @@ public class MessagePage extends AbstractBasePage {
         return messageBodyTextArea.getText();
     }
 
+    public WebElement getAddedContactEmailLink(){
+        BrowserUtilities.waitForPageToLoad(10);
+        wait.until(ExpectedConditions.visibilityOf(addedContactEmailLink));
+        WebElement addedContactEmail = driver.findElement(By.linkText("helpdesk31@cybertekschool.com"));
 
-
+        return addedContactEmail;
+    }
 
     public void clickToMessageTab(){
         BrowserUtilities.waitForPageToLoad(10);
