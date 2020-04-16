@@ -1,9 +1,7 @@
 package com.bitrix24.pages;
 
-import com.bitrix24.tests.AbstractTestBase;
 import com.bitrix24.utilities.BrowserUtilities;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -38,6 +36,94 @@ public class MessagePage extends AbstractBasePage {
     @FindBy (id = "disk-attach-image-193")
     private WebElement imageOfLogo;
 
+    @FindBy(id = "bx-b-mention-blogPostForm")
+    private WebElement addMentionIcon;
+
+    @FindBy(css = "[id^='destDepartmentTab_mention']")
+    private WebElement contactsLink;
+
+    @FindBy(xpath = "//div[text()='helpdesk31@cybertekschool.com']")
+    private WebElement contactEmail;
+
+    @FindBy(linkText = "helpdesk31@cybertekschool.com")
+    private WebElement addedContactEmailLink;
+
+    @FindBy(xpath = "//body[@contenteditable='true']")
+    private WebElement messageBodyTextArea;
+
+    @FindBy(xpath = "//*[@id='lhe_button_editor_blogPostForm']")
+    //@FindBy(css = "#lhe_button_editor_blogPostForm")
+    private WebElement visualEditorButton;
+
+    @FindBy(xpath = "(//div[@class='bxhtmled-toolbar'])[1]")
+    private WebElement editorTextBar;
+
+    @FindBy(xpath = "//span[@title='Topic']")
+    private WebElement topicIcon;
+
+    @FindBy(id = "blog-title" )
+    private  WebElement messageTopicTextBox;
+
+
+    @FindBy(xpath = "//*[text()='Windows']")
+    private WebElement windowsLink;
+
+    public void clickOnWindowsDesktopIcon(){
+        BrowserUtilities.waitForPageToLoad(10);
+        wait.until(ExpectedConditions.visibilityOf(windowsLink));
+        BrowserUtilities.scrollTo(windowsLink);
+        windowsLink.click();
+    }
+
+    public void clickTopicIcon(){
+        BrowserUtilities.waitForPageToLoad(10);
+        wait.until(ExpectedConditions.elementToBeClickable(topicIcon)).click();
+    }
+    public WebElement isTopicTextBoxVisible(){
+        BrowserUtilities.waitForPageToLoad(10);
+        wait.until(ExpectedConditions.visibilityOf(messageTopicTextBox));
+        return messageTopicTextBox;
+    }
+
+
+    public void clickOnVisualEditor(){
+        BrowserUtilities.waitForPageToLoad(10);
+        wait.until(ExpectedConditions.elementToBeClickable(visualEditorButton)).click();
+
+    }
+    public WebElement editorTextBarVisible(){
+        BrowserUtilities.waitForPageToLoad(10);
+        wait.until(ExpectedConditions.visibilityOf(editorTextBar));
+        WebElement editorTextBar = driver.findElement(By.xpath("(//div[@class='bxhtmled-toolbar'])[1]"));
+        return  editorTextBar;
+    }
+
+    public void addMention(){
+        BrowserUtilities.waitForPageToLoad(10);
+        wait.until(ExpectedConditions.elementToBeClickable(addMentionIcon)).click();
+    }
+
+    public void clickOnContactsLink(){
+        BrowserUtilities.waitForPageToLoad(10);
+        wait.until(ExpectedConditions.elementToBeClickable(contactsLink)).click();
+    }
+    public void selectContactEmail(){
+        BrowserUtilities.waitForPageToLoad(10);
+        wait.until(ExpectedConditions.elementToBeClickable(contactEmail)).click();
+    }
+    public String getMessageBodyText(){
+        BrowserUtilities.waitForPageToLoad(10);
+        wait.until(ExpectedConditions.visibilityOf(messageBodyTextArea));
+        return messageBodyTextArea.getText();
+    }
+
+    public WebElement getAddedContactEmailLink(){
+        BrowserUtilities.waitForPageToLoad(10);
+        wait.until(ExpectedConditions.visibilityOf(addedContactEmailLink));
+        WebElement addedContactEmail = driver.findElement(By.linkText("helpdesk31@cybertekschool.com"));
+
+        return addedContactEmail;
+      
     @FindBy (xpath = "//span[@title='Quote text']")
     private WebElement quoteIcon;
 
@@ -48,6 +134,7 @@ public class MessagePage extends AbstractBasePage {
     public void clickOnQuoteIcon(){
         BrowserUtilities.waitForPageToLoad(10);
         wait.until(ExpectedConditions.elementToBeClickable(quoteIcon)).click();
+
     }
 
     public void clickToMessageTab(){
