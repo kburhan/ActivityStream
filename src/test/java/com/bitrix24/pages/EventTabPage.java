@@ -15,15 +15,31 @@ public class EventTabPage extends AbstractBasePage {
 
     @FindBy(xpath = "(//span[@id='bx-b-link-blogPostForm_calendar'])//span")
     private WebElement linkClick;
-
     @FindBy(xpath = "//input[@placeholder='Link URL']")
     private WebElement linkInput;
-
     @FindBy(className = "adm-btn-save")
     private WebElement saveButton;
-
     @FindBy(xpath = "//div[@id='bx-html-editor-iframe-cnt-oCalEditorcal_3Jcl']//iframe")
     private WebElement linkText;
+
+    @FindBy(xpath = "(//span[@title='Insert video'])[2]")
+    private  WebElement clickVideo;
+    @FindBy(xpath = "//input[@placeholder='YouTube or Vimeo video URL']")
+    private WebElement videoSource;
+    @FindBy(xpath = "//input[@id='undefined']")
+    private WebElement saveVideo;
+
+    @FindBy(id="lhe_button_editor_blogPostForm_calendar")
+    private WebElement visualEditor;
+
+    @FindBy(id="feed-cal-event-fromcal_3Jcl")
+    private WebElement eventStartTime;
+    @FindBy(linkText = "26")
+    private WebElement dateStart;
+    @FindBy(id = "feed-cal-event-tocal_3Jcl")
+    private WebElement eventEndTime;
+    @FindBy(linkText = "30")
+    private WebElement dateEnd;
 
     public void setEventClick() {
         BrowserUtilities.waitForPageToLoad(20);
@@ -58,7 +74,29 @@ public class EventTabPage extends AbstractBasePage {
         System.out.println(body.getText());
 
         return body.getText();
+    }
 
+    public void setClickVideo(){
+        BrowserUtilities.waitForPageToLoad(20);
+        wait.until(ExpectedConditions.elementToBeClickable(clickVideo)).click();
+    }
+    public void setVideoSource(String link){
+        BrowserUtilities.waitForPageToLoad(20);
+        wait.until(ExpectedConditions.visibilityOf(videoSource)).click();
+        videoSource.sendKeys(link);
+    }
+    public void setSaveVideo(){
+        BrowserUtilities.waitForPageToLoad(20);
+        wait.until(ExpectedConditions.elementToBeClickable(saveVideo)).click();
+    }
+    public WebElement clickVisualEditor(){
+        BrowserUtilities.waitForPageToLoad(20);
+        wait.until(ExpectedConditions.elementToBeClickable(visualEditor)).click();
+        return visualEditor;
+    }
+    public void setEventStartTime(){
+        BrowserUtilities.waitForPageToLoad(20);
+        wait.until(ExpectedConditions.elementToBeClickable(eventStartTime)).click();
     }
 
 }
