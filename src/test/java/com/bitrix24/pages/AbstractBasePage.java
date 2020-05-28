@@ -11,6 +11,9 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public abstract class AbstractBasePage {
+    // abstract class but it doesnt have abstrcat method
+    // it meant to be sub-classed
+    // it implements certain methods for sub classes
 
     protected WebDriver driver = Driver.getDriver();
     protected WebDriverWait wait = new WebDriverWait(driver, 20);

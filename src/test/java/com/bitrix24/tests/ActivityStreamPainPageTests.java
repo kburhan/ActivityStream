@@ -6,6 +6,7 @@ import org.testng.annotations.Test;
 
 
 public class ActivityStreamPainPageTests extends AbstractTestBase{
+
     LoginPage loginPage = new LoginPage();
     ActivityStream_MainPage activityStream_mainPage = new ActivityStream_MainPage();
 

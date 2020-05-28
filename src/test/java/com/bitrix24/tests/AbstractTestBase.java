@@ -24,6 +24,8 @@ public abstract class AbstractTestBase {
     @BeforeTest
     @Parameters("reportName")
     public void setupTest(@Optional String reportName){
+        // report name optional if it given generates report based on name otherweise it generates as reports.html
+        // We use extent report as a part of verification process
 
 
         report = new ExtentReports();
@@ -52,6 +54,7 @@ public abstract class AbstractTestBase {
     public void tearDownTest(){
         report.flush();
     }
+    // responding report
 
     @BeforeMethod
     public void setup(){
@@ -60,6 +63,7 @@ public abstract class AbstractTestBase {
         Driver.getDriver().manage().window().maximize();
         wait=new WebDriverWait(Driver.getDriver(),25);
         actions=new Actions(Driver.getDriver());
+        // setup driver and url
     }
 
     @AfterMethod
@@ -74,5 +78,6 @@ public abstract class AbstractTestBase {
         }
         BrowserUtilities.wait(1);
         Driver.closeDriver();
+        // take screenshot if test fails and close the driver.
     }
 }
