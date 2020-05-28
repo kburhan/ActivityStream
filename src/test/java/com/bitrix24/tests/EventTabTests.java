@@ -40,3 +40,8 @@ public class EventTabTests extends AbstractTestBase {
         };
     }
 }
+// How you do data Driven Testing ?
+
+// for same steps we might have differenr input
+// we can also pull the data from outside of our code such a in excel file or cvs fiel
+// in case of excel file we have libraray which supports to pull data from execel file called apache poi

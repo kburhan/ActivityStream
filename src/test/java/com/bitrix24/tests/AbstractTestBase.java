@@ -24,10 +24,8 @@ public abstract class AbstractTestBase {
     @BeforeTest
     @Parameters("reportName")
     public void setupTest(@Optional String reportName){
-user_story_3.2
 
 
- master
         report = new ExtentReports();
         reportName= reportName==null ? "report.html" : reportName+".html";
         String reportPath = "";
